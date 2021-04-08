@@ -56,7 +56,7 @@ echo "deb https://packages.grafana.com/oss/deb stable main" | sudo tee -a /etc/a
 sudo apt-get update
 sudo apt-get install grafana
 sudo systemctl start grafana-server
-#this will allow anon access by default lol
+#NOTE: This will not restrict access to Grafana by default
 
 
 
