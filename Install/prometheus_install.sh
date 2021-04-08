@@ -17,6 +17,7 @@ cd ~
 sudo cp prometheus.yml Prometheus/prometheus-2.26.0.linux-amd64
 cd Prometheus/prometheus-2.26.0.linux-amd64
 sudo cp -R consoles/ console_libraries/ prometheus.yml /etc/prometheus
+cd /
 sudo mkdir -p data/prometheus
 sudo chown -R prometheus:prometheus data/prometheus /etc/prometheus/*
 cd ~
