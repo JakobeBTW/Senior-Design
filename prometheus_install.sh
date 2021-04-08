@@ -19,10 +19,11 @@ cd Prometheus/prometheus-2.26.0.linux-amd64
 sudo cp -R consoles/ console_libraries/ prometheus.yml /etc/prometheus
 sudo mkdir -p data/prometheus
 sudo chown -R prometheus:prometheus data/prometheus /etc/prometheus/*
-sudo cp ~prometheus.service /lib/systemd/system
+cd ~
+sudo cp prometheus.service /lib/systemd/system
 #Add test to see if nginx installed possibly, also probably not needed
 sudo apt-get install nginx
-sudo cp ~prometheus.conf /etc/nginx/conf.d
+sudo cp prometheus.conf /etc/nginx/conf.d
 sudo apt-get install apache2-utils
 cd /etc/prometheus
 sudo htpasswd -c .credentials admin
@@ -56,7 +57,7 @@ echo "deb https://packages.grafana.com/oss/deb stable main" | sudo tee -a /etc/a
 sudo apt-get update
 sudo apt-get install grafana
 sudo systemctl start grafana-server
-#NOTE: This will not restrict access to Grafana by default
+#this will allow anon access by default lol
 
 
 
