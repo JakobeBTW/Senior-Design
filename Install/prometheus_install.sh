@@ -1,7 +1,7 @@
 #!/bin/bash
-#Assumes the required files are sitting in user's home directory
+#Assumes the required files are in the directory it was launched from
 #prometheus.yml, prometheus.conf, node_exporter.service, prometheus.service
-cd ~
+FILES=$(pwd)
 mkdir Prometheus
 cd Prometheus
 wget https://github.com/prometheus/prometheus/releases/download/v2.26.0/prometheus-2.26.0.linux-amd64.tar.gz
@@ -13,14 +13,14 @@ sudo cp prometheus promtool /usr/local/bin
 
 sudo chown prometheus:prometheus /usr/local/bin/prometheus
 sudo mkdir /etc/prometheus
-cd ~
+cd $FILES
 sudo cp prometheus.yml Prometheus/prometheus-2.26.0.linux-amd64
 cd Prometheus/prometheus-2.26.0.linux-amd64
 sudo cp -R consoles/ console_libraries/ prometheus.yml /etc/prometheus
 cd /
 sudo mkdir -p data/prometheus
 sudo chown -R prometheus:prometheus data/prometheus /etc/prometheus/*
-cd ~
+cd $FILES
 sudo cp prometheus.service /lib/systemd/system
 #Add test to see if nginx installed possibly, also probably not needed
 sudo apt-get install nginx
@@ -36,14 +36,14 @@ sudo certtool --generate-privkey --outfile prometheus-private-key.pem
 
 sudo certtool --generate-self-signed --load-privkey prometheus-private-key.pem --outfile prometheus-cert.pem
 
-cd ~/Prometheus
+cd $FILES/Prometheus
 wget https://github.com/prometheus/node_exporter/releases/download/v1.1.2/node_exporter-1.1.2.linux-amd64.tar.gz
 tar xvzf node_exporter-1.1.2.linux-amd64.tar.gz
 cd node_exporter-1.1.2.linux-amd64
 sudo cp node_exporter /usr/local/bin
 sudo useradd -rs /bin/false node_exporter
 sudo chown node_exporter:node_exporter /usr/local/bin/node_exporter
-cd ~
+cd $FILES
 sudo cp node_exporter.service /lib/systemd/system
 
 sudo systemctl daemon-reload
@@ -60,10 +60,4 @@ sudo apt-get install grafana
 sudo systemctl start grafana-server
 #NOTE: This will not disable anon access by default
 #localhost:3000 for Grafana, localhost:9090 for Prometheus
-
-
-
-
-
-
 
