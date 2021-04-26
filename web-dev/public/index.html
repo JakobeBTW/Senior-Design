@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<body>
+<h1>Analytics Page</h1>
+<p1 id="p1">This page is a demo to show that the website is running for Senior Design. The Javascript can easily be embedded within this site to demo predictions</p1>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.7.0/d3.min.js" integrity="sha512-cd6CHE+XWDQ33ElJqsi0MdNte3S+bQY819f7p3NUHgwQQLXSKjE4cPZTeGNI+vaxZynk1wVU3hoHmow3m089wA==" crossorigin="anonymous"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCWHOlLlCiQm8sqfSLJiTNO28fUIkTGDVY",
+    authDomain: "senior-design-f89bf.firebaseapp.com",
+    projectId: "senior-design-f89bf",
+    storageBucket: "senior-design-f89bf.appspot.com",
+    messagingSenderId: "945840491061",
+    appId: "1:945840491061:web:59658f5bab338f11fa7f7c"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<script>
+  d3.selectAll("p").style("color", "green");
+</script>
+
+<p>This is a demo of a simple script written in JS that will change some text on button press</p>
+
+<p id="demo">This is what is going to be changed as a proof of concept</p>
+
+<button type="button" onclick="myFunction()">Click Here</button>
+
+<script>
+  function myFunction() {
+    document.getElementById("demo").innerHTML = 'This is what changed';
+    d3.select("demo").style("color", "red");
+  }
+</script>
+
+</body>
